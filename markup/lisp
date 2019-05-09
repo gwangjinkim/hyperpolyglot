@@ -333,7 +333,12 @@ fround fceiling ffloor _
 ||[[# str-join]][#str-join-note string join]||(reduce _
 @<&nbsp;&nbsp;>@(lambda (m o) _
 @<&nbsp;&nbsp;>@@<&nbsp;&nbsp;>@(concatenate 'string m " " o)) _
-@<&nbsp;&nbsp;>@'("foo" "bar" "baz"))||(string-join _
+@<&nbsp;&nbsp;>@'("foo" "bar" "baz")) _
+@<&nbsp;&nbsp;>@'(defun join (l &key (sep " ")) _
+@<&nbsp;&nbsp;>@'  (format nil (format nil _
+@<&nbsp;&nbsp;>@'                      "~a~a~a" _
+@<&nbsp;&nbsp;>@'                      "~{~a~^" sep "~}") l)) _
+@<&nbsp;&nbsp;>@'(join '(1 2 3) :sep #\Tab) ; ==> "1   2   3"||(string-join _
 @<&nbsp;&nbsp;>@'("foo" "bar" "baz") _
 @<&nbsp;&nbsp;>@" ")||(reduce #(str %1 " " %2) _
 @<&nbsp;&nbsp;>@'("foo" "bar" "baz"))||(reduce _
